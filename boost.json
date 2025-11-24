@@ -1,0 +1,10 @@
+{
+    "agents": [
+        "gemini"
+    ],
+    "editors": [
+        "vscode",
+        "antigravity"
+    ],
+    "guidelines": []
+}
