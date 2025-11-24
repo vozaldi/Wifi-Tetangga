@@ -17,3 +17,17 @@ Please create base payment method of "Cash", "Transfer BCA", "Transfer BRI", and
 Within an invoice there are products and promotions. The product can be added from company's branch products, or from a custom product created on the go when inserting a new invoice. In the invoice there are also a due date and paid date. Each invoice can have multiple payments.
 
 For the backend template use tabler.io. Use laravel logo as the project's logo (temporarily).
+
+I need `Setting` model. It connected to `Company` model through `company_settings` table. There are setting_type of "global" and "company". Global setting is for all companies, while company setting is for specific company.
+
+I need `Group` model. For now there are only two groupos of "Admin" and "Finance". Each group is connected to `Admin` model through `admin_groups` table.
+
+I need `Menu` model, it contains menu name, icon, order, and url. Each menu is connected to `Group` model through `group_menus` table.
+
+The base menus are:
+- "Dashboard"
+- "Branch"
+- "Product"
+- "Invoice"
+- "User"
+- "Setting"
