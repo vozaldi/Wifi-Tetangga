@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('invoice_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_variant_id')->nullable()->constrained()->nullOnDelete();
             $table->text('description');
-            $table->integer('quantity');
+            $table->integer('qty');
             $table->decimal('price', 15, 2);
             $table->decimal('total', 15, 2);
             $table->timestamps();

@@ -28,7 +28,7 @@ class VerifySystem extends Command
         $this->info('Starting System Verification...');
 
         // 1. Setup Data
-        $company = \App\Models\Company::create(['name' => 'Test Company']);
+        $company = \App\Models\Company::create(['name' => 'Test Company', 'slug' => 'test-company']);
         $branch = \App\Models\Branch::create(['company_id' => $company->id, 'name' => 'Test Branch']);
         $client = \App\Models\Client::create(['company_id' => $company->id, 'branch_id' => $branch->id, 'name' => 'Test Client']);
         $product = \App\Models\Product::create(['company_id' => $company->id, 'name' => 'Test Product']);
@@ -58,7 +58,7 @@ class VerifySystem extends Command
             'invoice_id' => $invoice->id,
             'product_variant_id' => $variant->id,
             'description' => 'Item 1',
-            'quantity' => 2,
+            'qty' => 2,
             'price' => 10000,
             'total' => 20000
         ]);

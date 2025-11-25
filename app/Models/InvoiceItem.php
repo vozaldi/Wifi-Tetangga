@@ -8,7 +8,7 @@ use App\Models\ProductVariant;
 
 class InvoiceItem extends Model
 {
-    protected $fillable = ['invoice_id', 'product_variant_id', 'description', 'quantity', 'price', 'total'];
+    protected $fillable = ['invoice_id', 'product_variant_id', 'description', 'qty', 'price', 'total'];
 
     public function invoice()
     {
