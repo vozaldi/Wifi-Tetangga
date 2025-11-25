@@ -112,12 +112,12 @@ return [
     */
 
     'use_route_url' => true,
-    'dashboard_url' => 'home',
-    'logout_url' => 'logout',
-    'login_url' => 'login',
+    'dashboard_url' => 'admin.dashboard',
+    'logout_url' => 'admin.auth.logout',
+    'login_url' => 'admin.auth.login',
     'register_url' => 'register',
-    'password_reset_url' => 'password.request',
-    'password_email_url' => 'password.email',
+    'password_reset_url' => 'admin.auth.password.request',
+    'password_email_url' => 'admin.auth.password.email',
     'profile_url' => false,
     'setting_url' => false,
 

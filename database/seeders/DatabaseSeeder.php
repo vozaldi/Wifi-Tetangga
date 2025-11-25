@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Company;
+use App\Models\Group;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +21,17 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        // Create a default company
+        $company = Company::create([
+            'name' => 'Default Company',
+            'slug' => 'default-company',
+            'address' => 'Default Address',
+            'phone' => '1234567890',
+        ]);
+
+        // Create admin user
+        $admin = Admin::create([
+            'company_id' => $company->id,
             'name' => 'Admin',
             'email' => 'admin@domain.com',
             'password' => Hash::make('secret'),
@@ -29,5 +42,14 @@ class DatabaseSeeder extends Seeder
             MenuSeeder::class,
             PaymentMethodSeeder::class,
         ]);
+
+        // Attach admin to Admin group
+        $adminGroup = Group::where('name', 'Admin')->first();
+        if ($adminGroup) {
+            $admin->groups()->attach($adminGroup->id, [
+                'company_id' => $company->id,
+                'branch_id' => null,
+            ]);
+        }
     }
 }

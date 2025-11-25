@@ -25,7 +25,7 @@ class MenuServiceProvider extends ServiceProvider
                 
                 // Get all allowed menu IDs from user's groups
                 $allowedMenuIds = $user->groups->flatMap(function ($group) {
-                    return $group->menus->pluck('id');
+                    return $group->menus?->pluck('id');
                 })->unique();
 
                 // Fetch root menus that are allowed, with allowed children
