@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
         $admin = Admin::create([
             'company_id' => $company->id,
             'name' => 'Admin',
-            'email' => 'admin@domain.com',
+            'email' => 'admin@company.com',
             'password' => Hash::make('secret'),
         ]);
 
