@@ -23,4 +23,15 @@ class Invoice extends Model
     {
         return $this->hasMany(InvoiceItem::class);
     }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function recalculateTotal()
+    {
+        $this->total_amount = $this->items()->sum('total');
+        $this->save();
+    }
 }
