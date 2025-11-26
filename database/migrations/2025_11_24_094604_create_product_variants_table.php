@@ -16,8 +16,11 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
-            $table->string('name')->default('Original');
-            $table->decimal('price', 15, 2);
+            $table->foreignId('variant_id')->constrained()->cascadeOnDelete();
+            $table->double('price');
+            $table->double('discount')->default(0);
+            $table->string('discount_type')->default('percent'); // percent, nominal
+            $table->double('tax')->default(0);
             $table->timestamps();
         });
     }

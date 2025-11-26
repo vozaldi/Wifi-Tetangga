@@ -8,7 +8,22 @@ use App\Models\Branch;
 
 class ProductVariant extends Model
 {
-    protected $fillable = ['product_id', 'company_id', 'branch_id', 'name', 'price'];
+    protected $fillable = [
+        'product_id',
+        'company_id',
+        'branch_id',
+        'variant_id',
+        'price',
+        'discount',
+        'discount_type',
+        'tax'
+    ];
+
+    protected $casts = [
+        'price' => 'double',
+        'discount' => 'double',
+        'tax' => 'double',
+    ];
 
     public function product()
     {
@@ -18,5 +33,10 @@ class ProductVariant extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function variant()
+    {
+        return $this->belongsTo(Variant::class);
     }
 }
