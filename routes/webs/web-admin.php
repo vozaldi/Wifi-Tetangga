@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\ProductVariantController;
+use App\Http\Controllers\Admin\VariantController;
 use App\Http\Middleware\TablarAdminLayout;
 
 // Admin Authentication Routes
@@ -43,6 +43,6 @@ Route::group([
 
     Route::prefix('/data')->group(function() {
         Route::resource('product', ProductController::class);
-        Route::resource('product-variant', ProductVariantController::class);
+        Route::resource('variant', VariantController::class)->parameters(['variant' => 'variant']);
     });
 });
