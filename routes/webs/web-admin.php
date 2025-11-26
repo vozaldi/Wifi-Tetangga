@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
+use App\Http\Controllers\Admin\BranchController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductVariantController;
 
 // Admin Authentication Routes
 Route::prefix('auth')->name('auth.')->group(function () {
@@ -34,4 +37,8 @@ Route::group([
     Route::get('/dashboard', function() {
         return view('admin.dashboard');
     })->name('dashboard');
+
+    Route::resource('branch', BranchController::class);
+    Route::resource('product', ProductController::class);
+    Route::resource('product-variant', ProductVariantController::class);
 });

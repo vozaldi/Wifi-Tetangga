@@ -14,12 +14,12 @@ class MenuSeeder extends Seeder
     {
         $menus = [
             ['name' => 'Dashboard', 'url' => 'dashboard', 'icon' => 'ti ti-dashboard', 'order' => 1],
-            ['name' => 'Cabang', 'url' => 'branches.index', 'icon' => 'ti ti-building', 'order' => 2],
+            ['name' => 'Cabang', 'url' => 'branch.index', 'icon' => 'ti ti-building', 'order' => 2],
             [
                 'name' => 'Master Data', 'icon' => 'ti ti-database', 'order' => 3,
                 'children' => [
-                    ['name' => 'Produk', 'url' => 'products.index', 'icon' => 'ti ti-box', 'order' => 1],
-                    ['name' => 'Varian', 'url' => 'variants.index', 'icon' => 'ti ti-versions', 'order' => 2],
+                    ['name' => 'Produk', 'url' => 'product.index', 'icon' => 'ti ti-box', 'order' => 1],
+                    ['name' => 'Varian', 'url' => 'product-variant.index', 'icon' => 'ti ti-versions', 'order' => 2],
                 ]
             ],
             [
