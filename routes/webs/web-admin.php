@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductVariantController;
+use App\Http\Middleware\TablarAdminLayout;
 
 // Admin Authentication Routes
 Route::prefix('auth')->name('auth.')->group(function () {
@@ -32,7 +33,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
 });
 
 Route::group([
-    'middleware' => 'auth:admin',
+    'middleware' => ['auth:admin', TablarAdminLayout::class],
 ], function() {
     Route::get('/dashboard', function() {
         return view('admin.dashboard');

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,5 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         \App\Models\InvoiceItem::observe(\App\Observers\InvoiceItemObserver::class);
         \App\Models\Payment::observe(\App\Observers\PaymentObserver::class);
+
+        DB::enableQueryLog();
     }
 }

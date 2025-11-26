@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Admin;
 use App\Models\Company;
 use App\Models\Group;
+use App\Models\Menu;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -50,6 +51,10 @@ class DatabaseSeeder extends Seeder
                 'company_id' => $company->id,
                 'branch_id' => null,
             ]);
+
+            Menu::get()->each(function ($menu) use ($adminGroup) {
+                $menu->groups()->attach($adminGroup->id);
+            });
         }
     }
 }

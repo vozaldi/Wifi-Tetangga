@@ -22,19 +22,15 @@ class MenuServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             if (\Illuminate\Support\Facades\Auth::guard('admin')->check()) {
                 $user = \Illuminate\Support\Facades\Auth::guard('admin')->user();
-                
-                // Get all allowed menu IDs from user's groups
-                $allowedMenuIds = $user->groups->flatMap(function ($group) {
-                    return $group->menus?->pluck('id');
-                })->unique();
+                $groupIds = $user->groups->pluck('id')->toArray();
 
                 // Fetch root menus that are allowed, with allowed children
-                $menus = \App\Models\Menu::whereIn('id', $allowedMenuIds)
+                $menus = \App\Models\Menu::whereHas('groups', function($query) use ($groupIds) {
+                        $query->whereIn('group_id', $groupIds);
+                    })
                     ->whereNull('parent_id')
                     ->orderBy('order')
-                    ->with(['children' => function ($query) use ($allowedMenuIds) {
-                        $query->whereIn('id', $allowedMenuIds)->orderBy('order');
-                    }])
+                    ->with(['children'])
                     ->get();
 
                 // Transform to Tabler format
@@ -42,7 +38,7 @@ class MenuServiceProvider extends ServiceProvider
                     $item = [
                         'text' => $menu->name,
                         'icon' => $menu->icon,
-                        'url' => $menu->url ? route($menu->url) : '#',
+                        'url' => $menu->url ? url($menu->url) : '#',
                     ];
 
                     if ($menu->children->isNotEmpty()) {
@@ -50,7 +46,7 @@ class MenuServiceProvider extends ServiceProvider
                             return [
                                 'text' => $child->name,
                                 'icon' => $child->icon,
-                                'url' => $child->url ? route($child->url) : '#',
+                                'url' => $child->url ? url($child->url) : '#',
                             ];
                         })->toArray();
                     }

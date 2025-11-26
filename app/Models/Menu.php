@@ -17,4 +17,16 @@ class Menu extends Model
     {
         return $this->belongsTo(Menu::class, 'parent_id');
     }
+
+    public function groups()
+    {
+        return $this->belongsToMany(
+            Group::class,
+            'group_menus',
+            'menu_id',
+            'group_id',
+            'id',
+            'id',
+        );
+    }
 }
