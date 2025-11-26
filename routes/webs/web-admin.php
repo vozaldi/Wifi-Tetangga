@@ -40,6 +40,9 @@ Route::group([
     })->name('dashboard');
 
     Route::resource('branch', BranchController::class);
-    Route::resource('product', ProductController::class);
-    Route::resource('product-variant', ProductVariantController::class);
+
+    Route::prefix('/data')->group(function() {
+        Route::resource('product', ProductController::class);
+        Route::resource('product-variant', ProductVariantController::class);
+    });
 });
